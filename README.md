@@ -22,7 +22,7 @@
 | Column        | Type       | Options                        |
 | ------------- | ---------- | ------------------------------ |
 | postal_code   | string     | null: false |
-| shipping_area_id | references | null: false, foreign_key: true |
+| shipping_area_id | integer  | null: false, foreign_key: true |
 | city          | string     | null: false |
 | house_number  | string     | null: false |
 | building_name | string     |
@@ -59,7 +59,7 @@
 
 ### Association
 - belongs_to :user
-- belongs_to :order
+- has_one :order
 - has_many :comments
 
 
