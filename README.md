@@ -15,25 +15,24 @@
 ### Association
 - has_many :items
 - has_many :comments
-- has_one :address
-- has_one :card
+- has_one :order
 
 
 ## addresses テーブル
 | Column        | Type       | Options                        |
 | ------------- | ---------- | ------------------------------ |
 | postal_code   | string     | null: false |
-| shipping_area_id | integer    | null: false |
+| shipping_area_id | references | null: false, foreign_key: true |
 | city          | string     | null: false |
 | house_number  | string     | null: false |
 | building_name | string     |
 | phone         | string     | null: false |
 
 ### Association
-- belongs_to :card
+- belongs_to :order
 
 
-## cards テーブル
+## orders テーブル
 | Column        | Type       | Options                        |
 | ------------- | ---------- | ------------------------------ |
 | user          | references | null: false, foreign_key: true |
@@ -60,6 +59,7 @@
 
 ### Association
 - belongs_to :user
+- belongs_to :order
 - has_many :comments
 
 
