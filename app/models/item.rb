@@ -9,6 +9,20 @@ class Item < ApplicationRecord
   belongs_to :shipping_area
   belongs_to :shipping_days
 
-  validates :title, :introduction, :price, presence: true
-  validates :category_id, :status_id, :postage_id, :shipping_area_id, :shipping_days_id, numericality: { other_than: 1 } 
+  with_options presence: true do
+    validates :title
+    validates :introduction
+    with_options numericality: {only_integer: true, greater_than_or_equal_to: 300, less_than_or_equal_to: 9999999, message: 'Price Out of setting range'} do
+      validates :price
+    end
+  end
+
+  with_options umericality: { other_than: 1 } do
+    validates :category_id
+    validates :status_id
+    validates :postage_id
+    validates :shipping_area_id
+    validates :shipping_days_id
+  end
+
 end
