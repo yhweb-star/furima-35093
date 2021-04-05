@@ -33,31 +33,31 @@ RSpec.describe Item, type: :model do
     it 'category_idが1(---)では登録できないこと' do
       @item.category_id = '1'
       @item.valid?
-      expect(@item.errors.full_messages).to include("Category must be other than 1")
+      expect(@item.errors.full_messages).to include('Category must be other than 1')
     end
 
     it 'status_idが1(---)では登録できないこと' do
       @item.status_id = '1'
       @item.valid?
-      expect(@item.errors.full_messages).to include("Status must be other than 1")
+      expect(@item.errors.full_messages).to include('Status must be other than 1')
     end
 
     it 'postage_idが1(---)では登録できないこと' do
       @item.postage_id = '1'
       @item.valid?
-      expect(@item.errors.full_messages).to include("Postage must be other than 1")
+      expect(@item.errors.full_messages).to include('Postage must be other than 1')
     end
 
     it 'shipping_area_idが1(---)では登録できないこと' do
       @item.shipping_area_id = '1'
       @item.valid?
-      expect(@item.errors.full_messages).to include("Shipping area must be other than 1")
+      expect(@item.errors.full_messages).to include('Shipping area must be other than 1')
     end
 
     it 'shipping_days_idが1(---)では登録できないこと' do
       @item.shipping_days_id = '1'
       @item.valid?
-      expect(@item.errors.full_messages).to include("Shipping days must be other than 1")
+      expect(@item.errors.full_messages).to include('Shipping days must be other than 1')
     end
 
     it 'priceが空では登録できないこと' do
@@ -69,19 +69,19 @@ RSpec.describe Item, type: :model do
     it 'priceが299以下では登録できないこと' do
       @item.price = '100'
       @item.valid?
-      expect(@item.errors.full_messages).to include("Price Out of setting range")
+      expect(@item.errors.full_messages).to include('Price Out of setting range')
     end
 
     it 'priceが10000000以上では登録できないこと' do
       @item.price = '12345678'
       @item.valid?
-      expect(@item.errors.full_messages).to include("Price Out of setting range")
+      expect(@item.errors.full_messages).to include('Price Out of setting range')
     end
 
     it 'priceが半角数字でないと保存できないこと' do
       @item.price = '１２３４５'
       @item.valid?
-      expect(@item.errors.full_messages).to include("Price Out of setting range")
+      expect(@item.errors.full_messages).to include('Price Out of setting range')
     end
 
     it 'userが紐付いていないと保存できないこと' do
@@ -90,5 +90,4 @@ RSpec.describe Item, type: :model do
       expect(@item.errors.full_messages).to include('User must exist')
     end
   end
-
 end
