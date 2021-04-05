@@ -31,31 +31,31 @@ RSpec.describe Item, type: :model do
     end
 
     it 'category_idが1(---)では登録できないこと' do
-      @item.category_id = '1'
+      @item.category_id = 1
       @item.valid?
       expect(@item.errors.full_messages).to include('Category must be other than 1')
     end
 
     it 'status_idが1(---)では登録できないこと' do
-      @item.status_id = '1'
+      @item.status_id = 1
       @item.valid?
       expect(@item.errors.full_messages).to include('Status must be other than 1')
     end
 
     it 'postage_idが1(---)では登録できないこと' do
-      @item.postage_id = '1'
+      @item.postage_id = 1
       @item.valid?
       expect(@item.errors.full_messages).to include('Postage must be other than 1')
     end
 
     it 'shipping_area_idが1(---)では登録できないこと' do
-      @item.shipping_area_id = '1'
+      @item.shipping_area_id = 1
       @item.valid?
       expect(@item.errors.full_messages).to include('Shipping area must be other than 1')
     end
 
     it 'shipping_days_idが1(---)では登録できないこと' do
-      @item.shipping_days_id = '1'
+      @item.shipping_days_id = 1
       @item.valid?
       expect(@item.errors.full_messages).to include('Shipping days must be other than 1')
     end
@@ -67,19 +67,31 @@ RSpec.describe Item, type: :model do
     end
 
     it 'priceが299以下では登録できないこと' do
-      @item.price = '100'
+      @item.price = 100
       @item.valid?
       expect(@item.errors.full_messages).to include('Price Out of setting range')
     end
 
     it 'priceが10000000以上では登録できないこと' do
-      @item.price = '12345678'
+      @item.price = 12345678
       @item.valid?
       expect(@item.errors.full_messages).to include('Price Out of setting range')
     end
 
     it 'priceが半角数字でないと保存できないこと' do
       @item.price = '１２３４５'
+      @item.valid?
+      expect(@item.errors.full_messages).to include('Price Out of setting range')
+    end
+
+    it 'priceが半角英数混合では登録できないこと' do
+      @item.price = '321abc'
+      @item.valid?
+      expect(@item.errors.full_messages).to include('Price Out of setting range')
+    end
+
+    it 'priceが半角英語だけでは登録できないこと' do
+      @item.price = 'abc'
       @item.valid?
       expect(@item.errors.full_messages).to include('Price Out of setting range')
     end
